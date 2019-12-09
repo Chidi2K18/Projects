@@ -2,7 +2,7 @@
 #include <time.h> 
 #include <string>
 using namespace std;
-void easyMode();
+void easyMode(modeChoice);
 char modeChoice;
 int y;
 int x;
@@ -13,6 +13,7 @@ int numOfQuestions = 1;
 int answer;
 bool correct;
 int correctCounter = 0;
+int correctAnswerPercentage = correctCounter / numOfQuestions * 100;
 
 void shuffle(int randomIndex[], int len){
   int temp =0;
@@ -55,7 +56,27 @@ void modechanger(char modeChoice){
 	}
 }
 
-void easyMode (char modeChoice)
+void normalMode (char modeChoice)
+{
+    srand(time(NULL)); //set random seed
+	int y = rand() % 100 + 1; //get random number between 1 and 100
+    srand(time(NULL)); //set random seed
+	int x = rand() % 100 + 1; //get random number between 1 and 100
+}
+
+void hardMode (char modeChoice)
+{
+    srand(time(NULL)); //set random seed
+	int y = rand() % 1000 + 1; //get random number between 1 and 1000
+    srand(time(NULL)); //set random seed
+	int x = rand() % 100 + 1; //get random number between 1 and 1000
+}
+
+int main(){
+    modechanger(modeChoice);
+    return 0;
+}
+void easyMode(char modeChoice)
 {
 	while (numOfQuestions != 10)
 	{
@@ -86,11 +107,11 @@ void easyMode (char modeChoice)
 			}
 			else if (answer != question)
 			{
-				correct = false
+				correct = false;
 				cout << "you have one chance remaining" << endl;
-				
+
 				cout << y << "+" << x << endl; // outputs the question 
-				
+
 				cout << "please enter the answer" << endl;
 
 				cin >> answer;
@@ -124,35 +145,43 @@ void easyMode (char modeChoice)
 
 			if (answer == question) //if user answers correctly
 			{
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
 				cout << "Congratulations your answer is correct" << endl;
 				numOfQuestions++;
 			}
 		}
-		if (numOfQuestions == 10)
+		else if (answer != question)
 		{
-			cout << "This is the end of questions" << endl;
-			break;
+			correct = false;
+			cout << "you have one chance remaining" << endl;
+
+			cout << y << "+" << x << endl; // outputs the question 
+
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+			if (answer == question)
+			{
+				correct = true;
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				cout << "Congratulations your answer is correct" << endl;
+				numOfQuestions++;
+			}
+			else if (answer != question)
+			{
+				cout << "You are out of chances" << endl;
+				numOfQuestions++;
+			}
 		}
+
 	}
 }
 
-void normalMode (char modeChoice)
-{
-    srand(time(NULL)); //set random seed
-	int y = rand() % 100 + 1; //get random number between 1 and 100
-    srand(time(NULL)); //set random seed
-	int x = rand() % 100 + 1; //get random number between 1 and 100
-}
-
-void hardMode (char modeChoice)
-{
-    srand(time(NULL)); //set random seed
-	int y = rand() % 1000 + 1; //get random number between 1 and 1000
-    srand(time(NULL)); //set random seed
-	int x = rand() % 100 + 1; //get random number between 1 and 1000
-}
-
-int main(){
-    modechanger(modeChoice);
-    return 0;
-}
