@@ -7,7 +7,7 @@ char modeChoice;
 int y;
 int x;
 string mathOperator[2] = { "+" , "-" };
-int randomIndex[2] = {1,2};
+int randomIndex[2] = {0,1};
 int question;
 int numOfQuestions = 1;
 int answer;
