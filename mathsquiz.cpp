@@ -78,13 +78,14 @@ int main(){
 }
 void easyMode(char modeChoice)
 {
+	srand(time(NULL)); //set random seed
+	int y = rand() % 10 + 1; //get random number between 1 and 10
+	srand(time(NULL)); //set random seed
+	int x = rand() % 10 + 1; //get random number between 1 and 10
+	shuffle(randomIndex, 2);
 	while (numOfQuestions != 10)
 	{
-		srand(time(NULL)); //set random seed
-		int y = rand() % 10 + 1; //get random number between 1 and 10
-		srand(time(NULL)); //set random seed
-		int x = rand() % 10 + 1; //get random number between 1 and 10
-		shuffle(randomIndex, 2);
+		
 		if (mathOperator[randomIndex[1]] == mathOperator[0]) // if random array index picker is equal to '+' or array element 0
 		{
 			question = y + x; // question is set to this
