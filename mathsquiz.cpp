@@ -4,6 +4,8 @@
 
 using namespace std;
 void easyMode();
+void normalMode();
+void hardMode();
 char modeChoice;
 int y;
 int x;
@@ -44,37 +46,19 @@ void modechanger(char modeChoice) {
 	cout << "Make your choice now" << endl;
 	cin >> modeChoice;
 
-	/*if (modeChoice == 'H')
+	switch (modeChoice)
 	{
-		hardMode(modeChoice);
-	}
-	else if (modeChoice == 'N')
-	{
-		normalMode(modeChoice);
-	}
-	else */
-	if (modeChoice == 'E')
-	{
+	case 'E':
 		easyMode();
+		break;
+	case 'N':
+		normalMode();
+		break;
+	case 'H':
+		hardMode();
 	}
-}
-/*
-void normalMode(char modeChoice)
-{
-	srand(time(NULL)); //set random seed
-	int y = rand() % 100 + 1; //get random number between 1 and 100
-	srand(time(NULL)); //set random seed
-	int x = rand() % 100 + 1; //get random number between 1 and 100
 }
 
-void hardMode(char modeChoice)
-{
-	srand(time(NULL)); //set random seed
-	int y = rand() % 1000 + 1; //get random number between 1 and 1000
-	srand(time(NULL)); //set random seed
-	int x = rand() % 100 + 1; //get random number between 1 and 1000
-}
-*/
 int main() {
 	modechanger(modeChoice);
 	return 0;
@@ -87,6 +71,272 @@ void easyMode()
 
 		int y = rand() % 10 + 1; //get random number between 1 and 10
 		int x = rand() % max; //^^
+		shuffle(randomIndex, 2);
+		if (mathOperator[randomIndex[0]] == mathOperator[0]) // if random array index picker is equal to '+' or array element 0
+		{
+			question = y + x; // question is set to this
+
+			cout << y << "+" << x << endl; // outputs the question 
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+
+			if (answer == question)//if user answers correctly
+			{
+
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+
+			}
+			else if (answer != question)
+			{
+				correct = false;
+
+				cout << "you have one chance remaining" << endl;
+
+				cout << y << "+" << x << endl; // outputs the question 
+
+				cout << "please enter the answer" << endl;
+
+				cin >> answer;
+
+				if (answer == question)
+				{
+
+					correct = true;
+					if (correct == true)
+					{
+						correctCounter++;
+					}
+					numOfQuestions++;
+					cout << "Congratulations your answer is correct" << endl;
+					cout << correctCounter << endl;
+					correctAnswerPercentage = correctCounter / 10 * 100;
+
+
+				}
+				else if (answer != question)
+				{
+					correct = false;
+					cout << "You are out of chances" << endl;
+					numOfQuestions++;
+					cout << correctCounter << endl;
+					correctAnswerPercentage = correctCounter / 10 * 100;
+
+				}
+			}
+		}
+		else if (mathOperator[randomIndex[0]] == mathOperator[1]) // if random array index picker is equal to '-' or array element 1
+		{
+			question = y - x;
+
+			cout << y << "-" << x << endl;
+
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+
+			if (answer == question) //if user answers correctly
+			{
+
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+
+			}
+		}
+		else if (answer != question)
+		{
+			correct = false;
+			cout << "you have one chance remaining" << endl;
+
+			cout << y << "+" << x << endl; // outputs the question 
+
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+			if (answer == question)
+			{
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+
+			}
+			else if (answer != question)
+			{
+				correct = false;
+				cout << "You are out of chances" << endl;
+				numOfQuestions++;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+			}
+		}
+		if (numOfQuestions >= 10) {
+			cout << "your percentage of correct answers is: " << correctAnswerPercentage << "%" << endl;
+			cout << "this quiz is now complete" << endl;
+			break;
+		}
+	}
+}
+
+void normalMode()
+{
+	srand(time(NULL)); //set random seed
+	while (numOfQuestions != 10)
+	{
+
+		int y = rand() % 100 + 1; //get random number between 1 and 10
+		int x = rand() % 100; //^^
+		shuffle(randomIndex, 2);
+		if (mathOperator[randomIndex[0]] == mathOperator[0]) // if random array index picker is equal to '+' or array element 0
+		{
+			question = y + x; // question is set to this
+
+			cout << y << "+" << x << endl; // outputs the question 
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+
+			if (answer == question)//if user answers correctly
+			{
+
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+
+			}
+			else if (answer != question)
+			{
+				correct = false;
+
+				cout << "you have one chance remaining" << endl;
+
+				cout << y << "+" << x << endl; // outputs the question 
+
+				cout << "please enter the answer" << endl;
+
+				cin >> answer;
+
+				if (answer == question)
+				{
+
+					correct = true;
+					if (correct == true)
+					{
+						correctCounter++;
+					}
+					numOfQuestions++;
+					cout << "Congratulations your answer is correct" << endl;
+					cout << correctCounter << endl;
+					correctAnswerPercentage = correctCounter / 10 * 100;
+
+
+				}
+				else if (answer != question)
+				{
+					correct = false;
+					cout << "You are out of chances" << endl;
+					numOfQuestions++;
+					cout << correctCounter << endl;
+					correctAnswerPercentage = correctCounter / 10 * 100;
+
+				}
+			}
+		}
+		else if (mathOperator[randomIndex[0]] == mathOperator[1]) // if random array index picker is equal to '-' or array element 1
+		{
+			question = y - x;
+
+			cout << y << "-" << x << endl;
+
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+
+			if (answer == question) //if user answers correctly
+			{
+
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+
+			}
+		}
+		else if (answer != question)
+		{
+			correct = false;
+			cout << "you have one chance remaining" << endl;
+
+			cout << y << "+" << x << endl; // outputs the question 
+
+			cout << "please enter the answer" << endl;
+
+			cin >> answer;
+			if (answer == question)
+			{
+				correct = true;
+				if (correct == true)
+				{
+					correctCounter++;
+				}
+				numOfQuestions++;
+				cout << "Congratulations your answer is correct" << endl;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+
+			}
+			else if (answer != question)
+			{
+				correct = false;
+				cout << "You are out of chances" << endl;
+				numOfQuestions++;
+				cout << correctCounter << endl;
+				correctAnswerPercentage = correctCounter / 10 * 100;
+			}
+		}
+		if (numOfQuestions >= 10) {
+			cout << "your percentage of correct answers is: " << correctAnswerPercentage << "%" << endl;
+			cout << "this quiz is now complete" << endl;
+			break;
+		}
+	}
+}
+
+void hardMode()
+{
+	srand(time(NULL)); //set random seed
+	while (numOfQuestions != 10)
+	{
+
+		int y = rand() % 10000 + 1; //get random number between 1 and 10
+		int x = rand() % 10000; //^^
 		shuffle(randomIndex, 2);
 		if (mathOperator[randomIndex[0]] == mathOperator[0]) // if random array index picker is equal to '+' or array element 0
 		{
